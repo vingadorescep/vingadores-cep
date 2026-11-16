@@ -38,7 +38,7 @@ let defaultPlayers = [
     { id: 10, name: 'Frois', position: 'Atacante', photo: 'fotos/frois.jpg', goals: 0, assists: 0, games: 3, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
     { id: 11, name: 'Renato', position: 'Atacante', photo: 'fotos/renato.jpg', goals: 1, assists: 6, games: 1, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
     { id: 12, name: 'Uriel', position: 'Meia', photo: 'fotos/uriel.jpg', goals: 1, assists: 2, games: 1, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
-    { id: 13, name: 'Pedro Labadessa', position: 'Meia', photo: 'fotos/labadessa.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },    
+    { id: 13, name: 'Pedro Labadessa', position: 'Meia', photo: 'fotos/labadessa.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false }   
 ];
 
 let players = defaultPlayers;
