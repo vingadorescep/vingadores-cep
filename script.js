@@ -2,10 +2,10 @@
 var isAdmin = window.location.href.indexOf('admin=vingadores2026') !== -1;
 
 let matchData = {
-    opponent: 'Indefinido',
-    date: '28/11/2026',
-    time: 'Indefinido',
-    location: 'Indefinido'
+    opponent: 'A definir',
+    date: '2026-11-28',
+    time: 'A definir',
+    location: 'A definir'
 };
 
 let teamStats = {
