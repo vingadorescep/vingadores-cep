@@ -144,7 +144,7 @@ function renderHome() {
 
     var editMatchBtn = isAdmin ? '<button class="match-edit" onclick="openEditModal()"><i class="fas fa-edit"></i> Editar</button>' : '';
 
-    var html = '<div class="card next-match"><div class="card-title">Próxima Partida</div><div class="match-info"><div class="match-teams"><div class="match-vs">Vingadores CEP vs ' + matchData.opponent + '</div><div class="match-date"><i class="fas fa-calendar"></i> ' + dateStr + ' às ' + matchData.time + '<br><i class="fas fa-map-marker-alt"></i> ' + matchData.location + '</div></div>' + editMatchBtn + '</div></div>';
+    var html = '<div class="card next-match"><div class="card-title">Próxima Partida</div><div class="match-info"><div class="match-teams"><div class="match-vs">Vingadores CEP vs ' + matchData.opponent + '</div><div class="match-date"><i class="fas fa-calendar"></i> ' + dateStr + ' às ' + timeStr + '<br><i class="fas fa-map-marker-alt"></i> ' + matchData.location + '</div></div>' + editMatchBtn + '</div></div>';
     
     html += '<div class="card"><div class="card-title">Estatísticas do Time</div><div class="stats-grid"><div class="stat-box"><div class="stat-number">' + totalGoals + '</div><div class="stat-label">Gols</div></div><div class="stat-box"><div class="stat-number">' + totalGames + '</div><div class="stat-label">Jogos</div></div><div class="stat-box"><div class="stat-number" style="background:linear-gradient(135deg,#10b981,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">' + wins + '</div><div class="stat-label">Vitórias</div></div><div class="stat-box"><div class="stat-number">' + players.length + '</div><div class="stat-label">Jogadores</div></div></div></div>';
     
