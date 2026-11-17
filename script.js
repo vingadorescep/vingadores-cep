@@ -2,10 +2,10 @@
 var isAdmin = window.location.href.indexOf('admin=vingadores2026') !== -1;
 
 let matchData = {
-    opponent: 'A definir',
+    opponent: 'Efigênia FC',
     date: '2026-11-28',
-    time: 'A definir',
-    location: 'A definir'
+    time: '17:00',
+    location: 'ASBAC'
 };
 
 let teamStats = {
@@ -24,57 +24,30 @@ let coach = {
 
 let defaultPlayers = [
     // === TITULARES (Formação 3-2-1) ===
-    { id: 1, name: 'Possiedi', position: 'Goleiro', photo: 'fotos/possiedi.jpg', goals: 1, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 88, isCaptain: false },
-    { id: 2, name: 'Bernardo', position: 'Zagueiro', photo: 'fotos/boy.jpg', goals: 2, assists: 0, games: 3, starter: true, fieldX: 20, fieldY: 70, isCaptain: false },
-    { id: 3, name: 'Guilherme', position: 'Zagueiro', photo: 'fotos/guilherme.jpg', goals: 8, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 72, isCaptain: false },
-    { id: 4, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 1, assists: 0, games: 1, starter: true, fieldX: 80, fieldY: 70, isCaptain: false },
-    { id: 5, name: 'Gustavo', position: 'Meia', photo: 'fotos/gustavo.jpg', goals: 3, assists: 4, games: 3, starter: true, fieldX: 30, fieldY: 45, isCaptain: true },
-    { id: 6, name: 'Cezar', position: 'Meia', photo: 'fotos/cezar.jpg', goals: 6, assists: 11, games: 3, starter: true, fieldX: 70, fieldY: 45, isCaptain: false },
-    { id: 7, name: 'Bueno', position: 'Atacante', photo: 'fotos/bueno.jpg', goals: 13, assists: 5, games: 2, starter: true, fieldX: 50, fieldY: 18, isCaptain: false },
+    { id: 1, name: 'Possiedi', position: 'Goleiro', photo: 'fotos/possiedi.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 50, fieldY: 88, isCaptain: false },
+    { id: 2, name: 'Bernardo', position: 'Zagueiro', photo: 'fotos/boy.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 20, fieldY: 70, isCaptain: false },
+    { id: 3, name: 'Guilherme', position: 'Zagueiro', photo: 'fotos/guilherme.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 50, fieldY: 72, isCaptain: false },
+    { id: 4, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 80, fieldY: 70, isCaptain: false },
+    { id: 5, name: 'Gustavo', position: 'Meia', photo: 'fotos/gustavo.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 30, fieldY: 45, isCaptain: true },
+    { id: 6, name: 'Cezar', position: 'Meia', photo: 'fotos/cezar.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 70, fieldY: 45, isCaptain: false },
+    { id: 7, name: 'Bueno', position: 'Atacante', photo: 'fotos/bueno.jpg', goals: 0, assists: 0, games: 0, starter: true, fieldX: 50, fieldY: 18, isCaptain: false },
     
     // === RESERVAS ===
-    { id: 8, name: 'Carioca', position: 'Zagueiro', photo: 'fotos/carioca.jpg', goals: 1, assists: 0, games: 1, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
-    { id: 9, name: 'Murilo', position: 'Meia', photo: 'fotos/murilo.jpg', goals: 1, assists: 6, games: 2, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
-    { id: 10, name: 'Frois', position: 'Atacante', photo: 'fotos/frois.jpg', goals: 0, assists: 0, games: 3, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
-    { id: 11, name: 'Renato', position: 'Atacante', photo: 'fotos/renato.jpg', goals: 1, assists: 6, games: 1, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
-    { id: 12, name: 'Uriel', position: 'Meia', photo: 'fotos/uriel.jpg', goals: 1, assists: 2, games: 1, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
-    { id: 13, name: 'Pedro Labadessa', position: 'Meia', photo: 'fotos/labadessa.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false }   
+    { id: 8, name: 'Carioca', position: 'Zagueiro', photo: 'fotos/carioca.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
+    { id: 9, name: 'Murilo', position: 'Meia', photo: 'fotos/murilo.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
+    { id: 10, name: 'Frois', position: 'Atacante', photo: 'fotos/frois.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
+    { id: 11, name: 'Renato', position: 'Atacante', photo: 'fotos/renato.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
+    { id: 12, name: 'Uriel', position: 'Meia', photo: 'fotos/uriel.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
+    { id: 13, name: 'Pedro Labadessa', position: 'Meia', photo: 'fotos/labadessa.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false }
 ];
 
 let players = defaultPlayers;
 localStorage.setItem('players', JSON.stringify(defaultPlayers));
 
-  let matchHistory = [
-    {
-        id: 1,
-        opponent: 'Sabores da Grama',
-        date: '2026-09-22',
-        time: '16:30',
-        location: 'Ecosoccer',
-        goalsFor: 8,
-        goalsAgainst: 10,
-        result: 'loss'
-    },
-    {
-        id: 2,
-        opponent: 'Comando Egito',
-        date: '2026-10-17',
-        time: '17:30',
-        location: 'América Sports',
-        goalsFor: 9,
-        goalsAgainst: 4,
-        result: 'win'
-    },
-    {
-        id: 3,
-        opponent: 'Fúria FC',
-        date: '2026-11-02',
-        time: '16:00',
-        location: 'Ecosoccer',
-        goalsFor: 24,
-        goalsAgainst: 4,
-        result: 'win'
-    }
+let matchHistory = [
+    { id: 1, opponent: 'Sabores da Grama', date: '2026-09-22', time: '16:30', location: 'Ecosoccer', goalsFor: 8, goalsAgainst: 10, result: 'loss' },
+    { id: 2, opponent: 'Comando Egito', date: '2026-10-17', time: '17:30', location: 'América Sports', goalsFor: 9, goalsAgainst: 4, result: 'win' },
+    { id: 3, opponent: 'Fúria FC', date: '2026-11-02', time: '16:00', location: 'Ecosoccer', goalsFor: 24, goalsAgainst: 4, result: 'win' }
 ];
 
 const content = document.getElementById('app-content');
@@ -118,7 +91,7 @@ function renderHome() {
         return;
     }
 
-       var totalGoals = 41;
+    var totalGoals = 41;
     var totalGames = 0;
     for (var i = 0; i < players.length; i++) {
         if (players[i].games > totalGames) totalGames = players[i].games;
@@ -144,7 +117,7 @@ function renderHome() {
 
     var editMatchBtn = isAdmin ? '<button class="match-edit" onclick="openEditModal()"><i class="fas fa-edit"></i> Editar</button>' : '';
 
-    var html = '<div class="card next-match"><div class="card-title">Próxima Partida</div><div class="match-info"><div class="match-teams"><div class="match-vs">Vingadores CEP vs ' + matchData.opponent + '</div><div class="match-date"><i class="fas fa-calendar"></i> ' + dateStr + ' às ' + timeStr + '<br><i class="fas fa-map-marker-alt"></i> ' + matchData.location + '</div></div>' + editMatchBtn + '</div></div>';
+    var html = '<div class="card next-match"><div class="card-title">Próxima Partida</div><div class="match-info"><div class="match-teams"><div class="match-vs">Vingadores CEP vs ' + matchData.opponent + '</div><div class="match-date"><i class="fas fa-calendar"></i> ' + dateStr + ' às ' + matchData.time + '<br><i class="fas fa-map-marker-alt"></i> ' + matchData.location + '</div></div>' + editMatchBtn + '</div></div>';
     
     html += '<div class="card"><div class="card-title">Estatísticas do Time</div><div class="stats-grid"><div class="stat-box"><div class="stat-number">' + totalGoals + '</div><div class="stat-label">Gols</div></div><div class="stat-box"><div class="stat-number">' + totalGames + '</div><div class="stat-label">Jogos</div></div><div class="stat-box"><div class="stat-number" style="background:linear-gradient(135deg,#10b981,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">' + wins + '</div><div class="stat-label">Vitórias</div></div><div class="stat-box"><div class="stat-number">' + players.length + '</div><div class="stat-label">Jogadores</div></div></div></div>';
     
