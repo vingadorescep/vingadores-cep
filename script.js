@@ -27,10 +27,10 @@ let defaultPlayers = [
     { id: 1, name: 'Possiedi', position: 'Goleiro', photo: 'fotos/possiedi.jpg', goals: 1, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 88, isCaptain: false },
     { id: 2, name: 'Bernardo', position: 'Zagueiro', photo: 'fotos/boy.jpg', goals: 2, assists: 0, games: 3, starter: true, fieldX: 20, fieldY: 70, isCaptain: false },
     { id: 3, name: 'Guilherme', position: 'Zagueiro', photo: 'fotos/guilherme.jpg', goals: 8, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 72, isCaptain: false },
-    { id: 4, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 1, assists: 0, games: 3, starter: true, fieldX: 80, fieldY: 70, isCaptain: false },
+    { id: 4, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 1, assists: 0, games: 1, starter: true, fieldX: 80, fieldY: 70, isCaptain: false },
     { id: 5, name: 'Gustavo', position: 'Meia', photo: 'fotos/gustavo.jpg', goals: 3, assists: 4, games: 3, starter: true, fieldX: 30, fieldY: 45, isCaptain: true },
     { id: 6, name: 'Cezar', position: 'Meia', photo: 'fotos/cezar.jpg', goals: 6, assists:11, games: 3, starter: true, fieldX: 70, fieldY: 45, isCaptain: false },
-    { id: 7, name: 'Bueno', position: 'Atacante', photo: 'fotos/bueno.jpg', goals: 13, assists: 5, games: 3, starter: true, fieldX: 50, fieldY: 18, isCaptain: false },
+    { id: 7, name: 'Bueno', position: 'Atacante', photo: 'fotos/bueno.jpg', goals: 13, assists: 5, games: 2, starter: true, fieldX: 50, fieldY: 18, isCaptain: false },
     
     // === RESERVAS ===
     { id: 8, name: 'Carioca', position: 'Zagueiro', photo: 'fotos/carioca.jpg', goals: 1, assists: 0, games: 1, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
