@@ -92,7 +92,7 @@ function renderHome() {
     }
 
     var totalGoals = 41;
-    var totalGames = 0;
+    var totalGames = 3;
     for (var i = 0; i < players.length; i++) {
         if (players[i].games > totalGames) totalGames = players[i].games;
     }
