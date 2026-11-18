@@ -254,4 +254,158 @@ function openEditModal() {
     var modal = document.createElement('div');
     modal.className = 'modal active';
     modal.id = 'editModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div><div 
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div>
+        class="form-group"><label>Data</label><input type="date" id="editDate" value="' + matchData.date + '"></div><div class="form-group"><label>Horário</label><input type="time" id="editTime" value="' + matchData.time + '"></div><div class="form-group"><label>Local</label><input type="text" id="editLocation" value="' + matchData.location + '"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveMatch()">Salvar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function saveMatch() {
+    if (!isAdmin) return;
+    matchData.opponent = document.getElementById('editOpponent').value;
+    matchData.date = document.getElementById('editDate').value;
+    matchData.time = document.getElementById('editTime').value;
+    matchData.location = document.getElementById('editLocation').value;
+    saveData();
+    closeModal('editModal');
+    renderHome();
+}
+
+function openEditStatsModal() {
+    if (!isAdmin) return;
+    var modal = document.createElement('div');
+    modal.className = 'modal active';
+    modal.id = 'editStatsModal';
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">🏆 Editar Aproveitamento</h3><div class="form-group"><label style="color:#10b981;">Vitórias</label><input type="number" id="statWins" value="' + (teamStats.wins || 0) + '" min="0"></div><div class="form-group"><label style="color:#9ca3af;">Empates</label><input type="number" id="statDraws" value="' + (teamStats.draws || 0) + '" min="0"></div><div class="form-group"><label style="color:#ef4444;">Derrotas</label><input type="number" id="statLosses" value="' + (teamStats.losses || 0) + '" min="0"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editStatsModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveTeamStats()">Salvar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function saveTeamStats() {
+    if (!isAdmin) return;
+    teamStats.wins = parseInt(document.getElementById('statWins').value) || 0;
+    teamStats.draws = parseInt(document.getElementById('statDraws').value) || 0;
+    teamStats.losses = parseInt(document.getElementById('statLosses').value) || 0;
+    saveData();
+    closeModal('editStatsModal');
+    renderHome();
+}
+
+function openAddPlayerModal() {
+    if (!isAdmin) return;
+    var modal = document.createElement('div');
+    modal.className = 'modal active';
+    modal.id = 'addPlayerModal';
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Adicionar Jogador</h3><div class="form-group"><label>Nome</label><input type="text" id="newName" placeholder="Nome do jogador"></div><div class="form-group"><label>Posição</label><input type="text" id="newPosition" placeholder="Ex: Atacante, Goleiro, Zagueiro, Meia"></div><div class="form-group"><label>Foto ou Emoji</label><input type="text" id="newPhoto" placeholder="Ex: fotos/joao.jpg"></div><div class="form-group"><label>É titular?</label><select id="newStarter"><option value="true">Sim</option><option value="false">Não</option></select></div><div class="form-group"><label>É o capitão?</label><select id="newIsCaptain"><option value="false">Não</option><option value="true">Sim</option></select></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'addPlayerModal\')">Cancelar</button><button class="btn btn-primary" onclick="addPlayer()">Adicionar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function addPlayer() {
+    if (!isAdmin) return;
+    var name = document.getElementById('newName').value;
+    var position = document.getElementById('newPosition').value;
+    var photo = document.getElementById('newPhoto').value || '⚽';
+    var starter = document.getElementById('newStarter').value === 'true';
+    var isCaptain = document.getElementById('newIsCaptain').value === 'true';
+    if (!name || !position) { alert('Preencha nome e posição!'); return; }
+    if (isCaptain) { players.forEach(function(p) { p.isCaptain = false; }); }
+    var fieldX = 50, fieldY = 50;
+    var posLower = position.toLowerCase();
+    if (posLower.includes('goleiro')) { fieldX = 50; fieldY = 88; }
+    else if (posLower.includes('zagueiro') || posLower.includes('defesa')) { fieldX = 50; fieldY = 70; }
+    else if (posLower.includes('meia') || posLower.includes('medio')) { fieldX = 50; fieldY = 45; }
+    else if (posLower.includes('atacante') || posLower.includes('ponta')) { fieldX = 50; fieldY = 18; }
+    players.push({ id: Date.now(), name: name, position: position, photo: photo, goals: 0, assists: 0, games: 0, starter: starter, isCaptain: isCaptain, fieldX: fieldX, fieldY: fieldY });
+    saveData();
+    closeModal('addPlayerModal');
+    renderSquad();
+}
+
+function openEditCoachModal() {
+    if (!isAdmin) return;
+    var modal = document.createElement('div');
+    modal.className = 'modal active';
+    modal.id = 'editCoachModal';
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">👔 Editar Técnico</h3><div class="form-group"><label>Nome do Técnico</label><input type="text" id="coachName" value="' + coach.name + '"></div><div class="form-group"><label>Foto ou Emoji</label><input type="text" id="coachPhoto" value="' + coach.photo + '" placeholder="Ex: fotos/tecnico.jpg"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editCoachModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveCoach()">Salvar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function saveCoach() {
+    if (!isAdmin) return;
+    coach.name = document.getElementById('coachName').value;
+    coach.photo = document.getElementById('coachPhoto').value || '👔';
+    if (!coach.name) { alert('Preencha o nome!'); return; }
+    saveData();
+    closeModal('editCoachModal');
+    var activeNav = document.querySelector('.nav-item.active');
+    navigate(activeNav.id.replace('nav-', ''));
+}
+
+function openEditPlayerModal(playerId) {
+    if (!isAdmin) return;
+    var player = players.find(function(p) { return p.id === playerId; });
+    if (!player) return;
+    var modal = document.createElement('div');
+    modal.className = 'modal active';
+    modal.id = 'editPlayerModal';
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar - ' + player.name + '</h3><div class="form-group"><label>Jogos</label><input type="number" id="editGames" value="' + player.games + '" min="0"></div><div class="form-group"><label>Gols</label><input type="number" id="editGoals" value="' + player.goals + '" min="0"></div><div class="form-group"><label>Assistências</label><input type="number" id="editAssists" value="' + player.assists + '" min="0"></div><div class="form-group"><label>É titular?</label><select id="editStarter"><option value="true"' + (player.starter ? ' selected' : '') + '>Sim</option><option value="false"' + (!player.starter ? ' selected' : '') + '>Não</option></select></div><div class="form-group"><label>É o capitão?</label><select id="editIsCaptain"><option value="true"' + (player.isCaptain ? ' selected' : '') + '>Sim</option><option value="false"' + (!player.isCaptain ? ' selected' : '') + '>Não</option></select></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editPlayerModal\')">Cancelar</button><button class="btn btn-primary" onclick="savePlayerStats(' + playerId + ')">Salvar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function savePlayerStats(playerId) {
+    if (!isAdmin) return;
+    var player = players.find(function(p) { return p.id === playerId; });
+    if (!player) return;
+    player.games = parseInt(document.getElementById('editGames').value) || 0;
+    player.goals = parseInt(document.getElementById('editGoals').value) || 0;
+    player.assists = parseInt(document.getElementById('editAssists').value) || 0;
+    player.starter = document.getElementById('editStarter').value === 'true';
+    var newIsCaptain = document.getElementById('editIsCaptain').value === 'true';
+    if (newIsCaptain && !player.isCaptain) { players.forEach(function(p) { p.isCaptain = false; }); }
+    player.isCaptain = newIsCaptain;
+    saveData();
+    closeModal('editPlayerModal');
+    var activeNav = document.querySelector('.nav-item.active');
+    navigate(activeNav.id.replace('nav-', ''));
+}
+
+function openAddMatchModal() {
+    if (!isAdmin) return;
+    var modal = document.createElement('div');
+    modal.className = 'modal active';
+    modal.id = 'addMatchModal';
+    var today = new Date().toISOString().split('T')[0];
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Registrar Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="matchOpponent" placeholder="Nome do time"></div><div class="form-group"><label>Data</label><input type="date" id="matchDate" value="' + today + '"></div><div class="form-group"><label>Horário</label><input type="time" id="matchTime" value="20:00"></div><div class="form-group"><label>Local</label><input type="text" id="matchLocation" placeholder="Ex: Campo CEP"></div><div class="form-group"><label>Gols Vingadores CEP</label><input type="number" id="matchGoalsFor" min="0" value="0"></div><div class="form-group"><label>Gols Adversário</label><input type="number" id="matchGoalsAgainst" min="0" value="0"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'addMatchModal\')">Cancelar</button><button class="btn btn-primary" onclick="addMatch()">Registrar</button></div></div>';
+    document.body.appendChild(modal);
+}
+
+function addMatch() {
+    if (!isAdmin) return;
+    var opponent = document.getElementById('matchOpponent').value;
+    var date = document.getElementById('matchDate').value;
+    var time = document.getElementById('matchTime').value;
+    var location = document.getElementById('matchLocation').value;
+    var goalsFor = parseInt(document.getElementById('matchGoalsFor').value) || 0;
+    var goalsAgainst = parseInt(document.getElementById('matchGoalsAgainst').value) || 0;
+    if (!opponent || !date || !location) { alert('Preencha todos os campos!'); return; }
+    var result = goalsFor > goalsAgainst ? 'win' : goalsFor < goalsAgainst ? 'loss' : 'draw';
+    matchHistory.push({ id: Date.now(), opponent: opponent, date: date, time: time, location: location, goalsFor: goalsFor, goalsAgainst: goalsAgainst, result: result });
+    saveData();
+    closeModal('addMatchModal');
+    renderHistory();
+}
+
+function deletePlayer(playerId) {
+    if (!isAdmin) return;
+    var player = players.find(function(p) { return p.id === playerId; });
+    if (!player) return;
+    if (confirm('Tem certeza que deseja excluir ' + player.name + '?')) {
+        players = players.filter(function(p) { return p.id !== playerId; });
+        saveData();
+        renderSquad();
+    }
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).remove();
+}
+
+navigate('home');
