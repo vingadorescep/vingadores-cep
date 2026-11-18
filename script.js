@@ -254,8 +254,7 @@ function openEditModal() {
     var modal = document.createElement('div');
     modal.className = 'modal active';
     modal.id = 'editModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div>
-        class="form-group"><label>Data</label><input type="date" id="editDate" value="' + matchData.date + '"></div><div class="form-group"><label>Horário</label><input type="time" id="editTime" value="' + matchData.time + '"></div><div class="form-group"><label>Local</label><input type="text" id="editLocation" value="' + matchData.location + '"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveMatch()">Salvar</button></div></div>';
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div><div class="form-group"><label>Data</label><input type="date" id="editDate" value="' + matchData.date + '"></div><div class="form-group"><label>Horário</label><input type="time" id="editTime" value="' + matchData.time + '"></div><div class="form-group"><label>Local</label><input type="text" id="editLocation" value="' + matchData.location + '"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveMatch()">Salvar</button></div></div>';
     document.body.appendChild(modal);
 }
 
