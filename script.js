@@ -23,20 +23,20 @@ let coach = {
 };
 
 let defaultPlayers = [
-    // === TITULARES (Formação 3-2-1) ===
+    // === TITULARES (Formação 2-3-1) ===
     { id: 1, name: 'Possiedi', position: 'Goleiro', photo: 'fotos/possiedi.jpg', goals: 1, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 88, isCaptain: false },
-    { id: 2, name: 'Bernardo', position: 'Zagueiro', photo: 'fotos/boy.jpg', goals: 2, assists: 0, games: 3, starter: true, fieldX: 20, fieldY: 70, isCaptain: false },
-    { id: 3, name: 'Guilherme', position: 'Zagueiro', photo: 'fotos/guilherme.jpg', goals: 8, assists: 0, games: 3, starter: true, fieldX: 50, fieldY: 72, isCaptain: false },
-    { id: 4, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 1, assists: 0, games: 1, starter: true, fieldX: 80, fieldY: 70, isCaptain: false },
-    { id: 5, name: 'Gustavo', position: 'Meia', photo: 'fotos/gustavo.jpg', goals: 3, assists: 4, games: 3, starter: true, fieldX: 30, fieldY: 45, isCaptain: true },
-    { id: 6, name: 'Cezar', position: 'Meia', photo: 'fotos/cezar.jpg', goals: 6, assists:11, games: 3, starter: true, fieldX: 70, fieldY: 45, isCaptain: false },
+    { id: 2, name: 'Guilherme', position: 'Zagueiro', photo: 'fotos/guilherme.jpg', goals: 8, assists: 0, games: 3, starter: true, fieldX: 30, fieldY: 70, isCaptain: false },
+    { id: 3, name: 'Bernardo', position: 'Zagueiro', photo: 'fotos/boy.jpg', goals: 2, assists: 0, games: 3, starter: true, fieldX: 70, fieldY: 70, isCaptain: false },
+    { id: 4, name: 'Gustavo', position: 'Meia', photo: 'fotos/gustavo.jpg', goals: 3, assists: 4, games: 3, starter: true, fieldX: 20, fieldY: 45, isCaptain: true },
+    { id: 5, name: 'Cezar', position: 'Meia', photo: 'fotos/cezar.jpg', goals: 6, assists: 11, games: 3, starter: true, fieldX: 50, fieldY: 45, isCaptain: false },
+    { id: 6, name: 'Renato', position: 'Meia', photo: 'fotos/renato.jpg', goals: 1, assists: 6, games: 1, starter: true, fieldX: 80, fieldY: 45, isCaptain: false },
     { id: 7, name: 'Bueno', position: 'Atacante', photo: 'fotos/bueno.jpg', goals: 13, assists: 5, games: 2, starter: true, fieldX: 50, fieldY: 18, isCaptain: false },
     
     // === RESERVAS ===
-    { id: 8, name: 'Carioca', position: 'Zagueiro', photo: 'fotos/carioca.jpg', goals: 1, assists: 0, games: 1, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
-    { id: 9, name: 'Murilo', position: 'Meia', photo: 'fotos/murilo.jpg', goals: 2, assists: 6, games: 2, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
-    { id: 10, name: 'Frois', position: 'Atacante', photo: 'fotos/frois.jpg', goals: 0, assists: 0, games: 3, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
-    { id: 11, name: 'Renato', position: 'Atacante', photo: 'fotos/renato.jpg', goals: 1, assists: 6, games: 1, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
+    { id: 8, name: 'Miguel', position: 'Zagueiro', photo: 'fotos/miguel.jpg', goals: 1, assists: 0, games: 1, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
+    { id: 9, name: 'Carioca', position: 'Zagueiro', photo: 'fotos/carioca.jpg', goals: 1, assists: 0, games: 1, starter: false, fieldX: 50, fieldY: 70, isCaptain: false },
+    { id: 10, name: 'Murilo', position: 'Meia', photo: 'fotos/murilo.jpg', goals: 2, assists: 6, games: 2, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
+    { id: 11, name: 'Frois', position: 'Atacante', photo: 'fotos/frois.jpg', goals: 0, assists: 0, games: 3, starter: false, fieldX: 50, fieldY: 18, isCaptain: false },
     { id: 12, name: 'Uriel', position: 'Meia', photo: 'fotos/uriel.jpg', goals: 1, assists: 2, games: 1, starter: false, fieldX: 50, fieldY: 45, isCaptain: false },
     { id: 13, name: 'Pedro Labadessa', position: 'Meia', photo: 'fotos/labadessa.jpg', goals: 0, assists: 0, games: 0, starter: false, fieldX: 50, fieldY: 45, isCaptain: false }
 ];
@@ -144,11 +144,18 @@ function organizeFormation() {
     var meias = starters.filter(function(p) { return p.position.toLowerCase().includes('meia') || p.position.toLowerCase().includes('medio'); });
     var atacantes = starters.filter(function(p) { return p.position.toLowerCase().includes('atacante') || p.position.toLowerCase().includes('ponta') || p.position.toLowerCase().includes('atac'); });
     
+    // Formação 2-3-1
     gk.forEach(function(p) { p.fieldX = 50; p.fieldY = 88; });
-    var zPositions = [20, 50, 80];
+    
+    // 2 Zagueiros
+    var zPositions = [30, 70];
     zagueiros.forEach(function(p, i) { p.fieldX = zPositions[i] || 50; p.fieldY = 70; });
-    var mPositions = [30, 70];
+    
+    // 3 Meias (esquerda, centro, direita)
+    var mPositions = [20, 50, 80];
     meias.forEach(function(p, i) { p.fieldX = mPositions[i] || 50; p.fieldY = 45; });
+    
+    // 1 Atacante
     atacantes.forEach(function(p) { p.fieldX = 50; p.fieldY = 18; });
     
     saveData();
@@ -157,7 +164,7 @@ function organizeFormation() {
 function renderLineup() {
     organizeFormation();
     var starters = players.filter(function(p) { return p.starter; });
-    var html = '<h2 class="section-title">Formação Oficial</h2><div class="formation-container"><div class="formation-title">3-2-1</div><div class="field"><div class="field-area-top"></div><div class="field-area-bottom"></div><div class="field-goal-top"></div><div class="field-goal-bottom"></div><div class="field-penalty-top"></div><div class="field-penalty-bottom"></div>';
+    var html = '<h2 class="section-title">Formação Oficial</h2><div class="formation-container"><div class="formation-title">2-3-1</div><div class="field"><div class="field-area-top"></div><div class="field-area-bottom"></div><div class="field-goal-top"></div><div class="field-goal-bottom"></div><div class="field-penalty-top"></div><div class="field-penalty-bottom"></div>';
     
     var coachClick = isAdmin ? 'onclick="openEditCoachModal()"' : '';
     html += '<div class="field-player" style="left:' + coach.fieldX + '%;top:' + coach.fieldY + '%;" ' + coachClick + '><div class="player-circle coach">' + renderPhoto(coach.photo, true) + '</div><div class="player-name-field coach-name">👔 ' + coach.name + '</div><div class="player-position-field">TÉCNICO</div></div>';
@@ -247,157 +254,4 @@ function openEditModal() {
     var modal = document.createElement('div');
     modal.className = 'modal active';
     modal.id = 'editModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div><div class="form-group"><label>Data</label><input type="date" id="editDate" value="' + matchData.date + '"></div><div class="form-group"><label>Horário</label><input type="time" id="editTime" value="' + matchData.time + '"></div><div class="form-group"><label>Local</label><input type="text" id="editLocation" value="' + matchData.location + '"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveMatch()">Salvar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function saveMatch() {
-    if (!isAdmin) return;
-    matchData.opponent = document.getElementById('editOpponent').value;
-    matchData.date = document.getElementById('editDate').value;
-    matchData.time = document.getElementById('editTime').value;
-    matchData.location = document.getElementById('editLocation').value;
-    saveData();
-    closeModal('editModal');
-    renderHome();
-}
-
-function openEditStatsModal() {
-    if (!isAdmin) return;
-    var modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.id = 'editStatsModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">🏆 Editar Aproveitamento</h3><div class="form-group"><label style="color:#10b981;">Vitórias</label><input type="number" id="statWins" value="' + (teamStats.wins || 0) + '" min="0"></div><div class="form-group"><label style="color:#9ca3af;">Empates</label><input type="number" id="statDraws" value="' + (teamStats.draws || 0) + '" min="0"></div><div class="form-group"><label style="color:#ef4444;">Derrotas</label><input type="number" id="statLosses" value="' + (teamStats.losses || 0) + '" min="0"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editStatsModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveTeamStats()">Salvar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function saveTeamStats() {
-    if (!isAdmin) return;
-    teamStats.wins = parseInt(document.getElementById('statWins').value) || 0;
-    teamStats.draws = parseInt(document.getElementById('statDraws').value) || 0;
-    teamStats.losses = parseInt(document.getElementById('statLosses').value) || 0;
-    saveData();
-    closeModal('editStatsModal');
-    renderHome();
-}
-
-function openAddPlayerModal() {
-    if (!isAdmin) return;
-    var modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.id = 'addPlayerModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Adicionar Jogador</h3><div class="form-group"><label>Nome</label><input type="text" id="newName" placeholder="Nome do jogador"></div><div class="form-group"><label>Posição</label><input type="text" id="newPosition" placeholder="Ex: Atacante, Goleiro, Zagueiro, Meia"></div><div class="form-group"><label>Foto ou Emoji</label><input type="text" id="newPhoto" placeholder="Ex: fotos/joao.jpg"></div><div class="form-group"><label>É titular?</label><select id="newStarter"><option value="true">Sim</option><option value="false">Não</option></select></div><div class="form-group"><label>É o capitão?</label><select id="newIsCaptain"><option value="false">Não</option><option value="true">Sim</option></select></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'addPlayerModal\')">Cancelar</button><button class="btn btn-primary" onclick="addPlayer()">Adicionar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function addPlayer() {
-    if (!isAdmin) return;
-    var name = document.getElementById('newName').value;
-    var position = document.getElementById('newPosition').value;
-    var photo = document.getElementById('newPhoto').value || '⚽';
-    var starter = document.getElementById('newStarter').value === 'true';
-    var isCaptain = document.getElementById('newIsCaptain').value === 'true';
-    if (!name || !position) { alert('Preencha nome e posição!'); return; }
-    if (isCaptain) { players.forEach(function(p) { p.isCaptain = false; }); }
-    var fieldX = 50, fieldY = 50;
-    var posLower = position.toLowerCase();
-    if (posLower.includes('goleiro')) { fieldX = 50; fieldY = 88; }
-    else if (posLower.includes('zagueiro') || posLower.includes('defesa')) { fieldX = 50; fieldY = 70; }
-    else if (posLower.includes('meia') || posLower.includes('medio')) { fieldX = 50; fieldY = 45; }
-    else if (posLower.includes('atacante') || posLower.includes('ponta')) { fieldX = 50; fieldY = 18; }
-    players.push({ id: Date.now(), name: name, position: position, photo: photo, goals: 0, assists: 0, games: 0, starter: starter, isCaptain: isCaptain, fieldX: fieldX, fieldY: fieldY });
-    saveData();
-    closeModal('addPlayerModal');
-    renderSquad();
-}
-
-function openEditCoachModal() {
-    if (!isAdmin) return;
-    var modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.id = 'editCoachModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">👔 Editar Técnico</h3><div class="form-group"><label>Nome do Técnico</label><input type="text" id="coachName" value="' + coach.name + '"></div><div class="form-group"><label>Foto ou Emoji</label><input type="text" id="coachPhoto" value="' + coach.photo + '" placeholder="Ex: fotos/tecnico.jpg"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editCoachModal\')">Cancelar</button><button class="btn btn-primary" onclick="saveCoach()">Salvar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function saveCoach() {
-    if (!isAdmin) return;
-    coach.name = document.getElementById('coachName').value;
-    coach.photo = document.getElementById('coachPhoto').value || '👔';
-    if (!coach.name) { alert('Preencha o nome!'); return; }
-    saveData();
-    closeModal('editCoachModal');
-    var activeNav = document.querySelector('.nav-item.active');
-    navigate(activeNav.id.replace('nav-', ''));
-}
-
-function openEditPlayerModal(playerId) {
-    if (!isAdmin) return;
-    var player = players.find(function(p) { return p.id === playerId; });
-    if (!player) return;
-    var modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.id = 'editPlayerModal';
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar - ' + player.name + '</h3><div class="form-group"><label>Jogos</label><input type="number" id="editGames" value="' + player.games + '" min="0"></div><div class="form-group"><label>Gols</label><input type="number" id="editGoals" value="' + player.goals + '" min="0"></div><div class="form-group"><label>Assistências</label><input type="number" id="editAssists" value="' + player.assists + '" min="0"></div><div class="form-group"><label>É titular?</label><select id="editStarter"><option value="true"' + (player.starter ? ' selected' : '') + '>Sim</option><option value="false"' + (!player.starter ? ' selected' : '') + '>Não</option></select></div><div class="form-group"><label>É o capitão?</label><select id="editIsCaptain"><option value="true"' + (player.isCaptain ? ' selected' : '') + '>Sim</option><option value="false"' + (!player.isCaptain ? ' selected' : '') + '>Não</option></select></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'editPlayerModal\')">Cancelar</button><button class="btn btn-primary" onclick="savePlayerStats(' + playerId + ')">Salvar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function savePlayerStats(playerId) {
-    if (!isAdmin) return;
-    var player = players.find(function(p) { return p.id === playerId; });
-    if (!player) return;
-    player.games = parseInt(document.getElementById('editGames').value) || 0;
-    player.goals = parseInt(document.getElementById('editGoals').value) || 0;
-    player.assists = parseInt(document.getElementById('editAssists').value) || 0;
-    player.starter = document.getElementById('editStarter').value === 'true';
-    var newIsCaptain = document.getElementById('editIsCaptain').value === 'true';
-    if (newIsCaptain && !player.isCaptain) { players.forEach(function(p) { p.isCaptain = false; }); }
-    player.isCaptain = newIsCaptain;
-    saveData();
-    closeModal('editPlayerModal');
-    var activeNav = document.querySelector('.nav-item.active');
-    navigate(activeNav.id.replace('nav-', ''));
-}
-
-function openAddMatchModal() {
-    if (!isAdmin) return;
-    var modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.id = 'addMatchModal';
-    var today = new Date().toISOString().split('T')[0];
-    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Registrar Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="matchOpponent" placeholder="Nome do time"></div><div class="form-group"><label>Data</label><input type="date" id="matchDate" value="' + today + '"></div><div class="form-group"><label>Horário</label><input type="time" id="matchTime" value="20:00"></div><div class="form-group"><label>Local</label><input type="text" id="matchLocation" placeholder="Ex: Campo CEP"></div><div class="form-group"><label>Gols Vingadores CEP</label><input type="number" id="matchGoalsFor" min="0" value="0"></div><div class="form-group"><label>Gols Adversário</label><input type="number" id="matchGoalsAgainst" min="0" value="0"></div><div class="form-buttons"><button class="btn btn-secondary" onclick="closeModal(\'addMatchModal\')">Cancelar</button><button class="btn btn-primary" onclick="addMatch()">Registrar</button></div></div>';
-    document.body.appendChild(modal);
-}
-
-function addMatch() {
-    if (!isAdmin) return;
-    var opponent = document.getElementById('matchOpponent').value;
-    var date = document.getElementById('matchDate').value;
-    var time = document.getElementById('matchTime').value;
-    var location = document.getElementById('matchLocation').value;
-    var goalsFor = parseInt(document.getElementById('matchGoalsFor').value) || 0;
-    var goalsAgainst = parseInt(document.getElementById('matchGoalsAgainst').value) || 0;
-    if (!opponent || !date || !location) { alert('Preencha todos os campos!'); return; }
-    var result = goalsFor > goalsAgainst ? 'win' : goalsFor < goalsAgainst ? 'loss' : 'draw';
-    matchHistory.push({ id: Date.now(), opponent: opponent, date: date, time: time, location: location, goalsFor: goalsFor, goalsAgainst: goalsAgainst, result: result });
-    saveData();
-    closeModal('addMatchModal');
-    renderHistory();
-}
-
-function deletePlayer(playerId) {
-    if (!isAdmin) return;
-    var player = players.find(function(p) { return p.id === playerId; });
-    if (!player) return;
-    if (confirm('Tem certeza que deseja excluir ' + player.name + '?')) {
-        players = players.filter(function(p) { return p.id !== playerId; });
-        saveData();
-        renderSquad();
-    }
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).remove();
-}
-
-navigate('home');
+    modal.innerHTML = '<div class="modal-content"><h3 class="modal-title">Editar Próxima Partida</h3><div class="form-group"><label>Adversário</label><input type="text" id="editOpponent" value="' + matchData.opponent + '"></div><div 
